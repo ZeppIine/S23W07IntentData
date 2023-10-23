@@ -15,4 +15,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button android:id="@+id/btnlike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="개추"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnhate"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button android:id="@+id/btnhate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비추"
+        app:layout_constraintStart_toEndOf="@id/btnlike"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
