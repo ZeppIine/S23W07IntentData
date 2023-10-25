@@ -34,6 +34,9 @@ class ImageActivity : AppCompatActivity(), OnClickListener {
             else -> R.drawable.ic_launcher_foreground
         }
         main.img1.setImageResource(res)
+
+        main.btnlike.setOnClickListener(this)
+        main.btnhate.setOnClickListener(this)
     }
 
     override fun onClick(p: View?) {
@@ -50,7 +53,7 @@ class ImageActivity : AppCompatActivity(), OnClickListener {
         val intent = Intent()
         Toast.makeText(this, lahe, Toast.LENGTH_SHORT).show()
         intent.putExtra(TANK_NAME, tanks)
-        intent.putExtra(TANK_RESULT, lahe)
+        intent.putExtra(TANK_RESULT, value)
         setResult(RESULT_OK, intent)
         finish()
     }

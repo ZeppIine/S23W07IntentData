@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import kr.ac.kumoh.ce.s20180147.s23w07intentdata.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), OnClickListener {
@@ -15,6 +16,23 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         const val AMXM454 = "amxm454"
     }
     private lateinit var main:ActivityMainBinding
+
+    private val startForResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        if(it.resultCode != RESULT_OK) return@registerForActivityResult
+
+        val result = it.data?.getIntExtra( ImageActivity.TANK_RESULT, ImageActivity.NONE )
+        val str = when(result){
+            ImageActivity.LIKE -> "개추"
+            ImageActivity.HATE -> "비추"
+            else -> ""
+        }
+        when (it.data?.getStringExtra(ImageActivity.TANK_NAME)){
+            AMX50B -> main.btn1.text = "$AMX50B ($str)"
+            AMXM454 -> main.btn2.text = "$AMXM454 ($str)"
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,9 +55,10 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             else -> "error"
         }
         Toast.makeText(this, tank_text, Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, ImageActivity::class.java)
+        val intent = Intent(this, AnotherActivity::class.java)
         intent.putExtra(KEY_NAME, value)
         main.text1.setText(tank_text)
-        startActivity(intent)
+//        startActivity(intent)
+        startForResult.launch(intent)
     }
 }
