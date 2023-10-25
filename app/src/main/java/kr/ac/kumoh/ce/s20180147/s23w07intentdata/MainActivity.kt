@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         Toast.makeText(this, tank_text, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, AnotherActivity::class.java)
         intent.putExtra(KEY_NAME, value)
-        main.text1.setText(tank_text)
+        main.text1.text = tank_text
 //        startActivity(intent)
         startForResult.launch(intent)
     }

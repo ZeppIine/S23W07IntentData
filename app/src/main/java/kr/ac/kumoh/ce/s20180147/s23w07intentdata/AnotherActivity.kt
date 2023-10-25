@@ -56,10 +56,10 @@ class AnotherActivity : ComponentActivity() {
     }
 }
 
-fun onResultClick(activity: Activity, imageName: String?, imageResult: Int) {
+fun onResultClick(activity: Activity, tankName: String?, tankResult: Int) {
     val intent = Intent()
-    intent.putExtra(TANK_NAME, imageName)
-    intent.putExtra(TANK_RESULT, imageResult)
+    intent.putExtra(TANK_NAME, tankName)
+    intent.putExtra(TANK_RESULT, tankResult)
     activity.setResult(RESULT_OK, intent)
     activity.finish()
 }
